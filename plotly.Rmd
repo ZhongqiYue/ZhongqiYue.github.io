@@ -1,0 +1,62 @@
+---
+title: "Plotly examples"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# Plotly
+
+We're gonna look at NY NOAA dataset.
+
+```{r}
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+```
+
+```{r}
+data("ny_noaa")
+
+ny_noaa = 
+  ny_noaa %>% 
+  filter(id == "USC00300023") %>% 
+  separate(date, c("year", "month", "day")) %>% 
+  mutate(tmax = as.numeric(tmax),
+         tmin = as.numeric(tmin),
+         tmax = tmax / 10,
+         tmin = tmin / 10
+  ) 
+```
+
+# Plotly plots
+
+## scatterplot
+
+```{r}
+ny_noaa %>% 
+  mutate(text_label = str_c("Year: ", year, "\nSnowfall(mm): ", snow)) %>% 
+  plot_ly(x = ~tmin, y = ~tmax, color = ~year, text = ~text_label, 
+          alpha = .5, type = "scatter",colors = "viridis", mode = "markers"
+          )
+```
+
+## Boxplot
+
+```{r}
+ny_noaa %>% 
+  plot_ly(y = ~prcp, x = ~year, color = ~year,
+          type = "box", colors = "viridis")
+```
+
+## Barplot
+
+```{r}
+ny_noaa %>% 
+  count(year) %>% 
+  mutate(year = fct_reorder(year, n)) %>% 
+  plot_ly(x = ~year, y = ~n, color = ~year,
+          type = "bar", colors = "viridis")
+```
+

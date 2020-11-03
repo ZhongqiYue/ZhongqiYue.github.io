@@ -1,0 +1,64 @@
+---
+title: "Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    source: embed
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+library(flexdashboard)
+```
+
+```{r}
+data("ny_noaa")
+
+ny_noaa = 
+  ny_noaa %>% 
+  filter(id == "USC00300023") %>% 
+  separate(date, c("year", "month", "day")) %>% 
+  mutate(tmax = as.numeric(tmax),
+         tmin = as.numeric(tmin),
+         tmax = tmax / 10,
+         tmin = tmin / 10
+  ) 
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+ny_noaa %>% 
+  mutate(text_label = str_c("Year: ", year, "\nSnowfall(mm): ", snow)) %>% 
+  plot_ly(x = ~tmin, y = ~tmax, color = ~year, text = ~text_label, 
+          alpha = .5, type = "scatter",colors = "viridis", mode = "markers"
+          )
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+ny_noaa %>% 
+  plot_ly(y = ~prcp, x = ~year, color = ~year,
+          type = "box", colors = "viridis")
+```
+
+### Chart C
+
+```{r}
+ny_noaa %>% 
+  count(year) %>% 
+  mutate(year = fct_reorder(year, n)) %>% 
+  plot_ly(x = ~year, y = ~n, color = ~year,
+          type = "bar", colors = "viridis")
+```
+
