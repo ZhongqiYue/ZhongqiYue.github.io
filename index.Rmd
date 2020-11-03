@@ -1,0 +1,32 @@
+---
+title: "Zhongqi Yue's website"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# Welcome to Zhongqi Yue's website
+UNI: zy2442
+
+![](https://media.giphy.com/media/BpS6k9mXoDiZa/giphy.gif)
+
+## Here's a subsection
+* Course: BIST P8105 Data Science
+* Professor: Jeff Goldsmith
+* This website is used for P8105 Homework 4.
+
+## Links to other websits
+* [Google](https://www.google.com/)
+* [P8105](https://p8105.com)
+* [Homework 4](https://p8105.com/homework_4.html)
+
+## Local image
+
+Here is my girlfriend's cat, Niangao:
+
+<img src="images/Niangao.JPG" style="width:50%">
+
+## Link to page within the site
+* [About me](about.html)
+

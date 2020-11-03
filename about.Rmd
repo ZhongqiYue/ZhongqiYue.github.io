@@ -1,0 +1,17 @@
+---
+title: "About me"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# This page has information about me.
+
+* I got my bachelor degree at Case Western Reserve University in May, 2020. My undergraduate program is BS Biochemistry. 
+* I have been a member in a lab which focuses on the research of antibiotics for three years during my undergraduate program and participated in one of our lab's research paper which has been preparing to publication.  
+* I'm currently in Pharmaceutical Statistics track of MS Biostatistics program at Mailman School of Public Health at the Columbia University and will get my master degree in May, 2022.
+* I'm a member of an indie band on Tencent muisican website which is a Chinese online music platform. Our music style mainly focuses on pop rock, post-rock, R&B and dream pop. I'm mainly in charge of composing and arranging music.
+
+## Link to our mucisican page
+[Blue Soda]( https://c.y.qq.com/base/fcgi-bin/u?__=LTARA37)
