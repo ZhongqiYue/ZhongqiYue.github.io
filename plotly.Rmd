@@ -4,19 +4,20 @@ output:
   html_document:
     toc: true
     toc_float: true
+    code_folding: hide
 ---
 
 # Plotly
 
-We're gonna look at NY NOAA dataset.
+#### We're gonna look at NY NOAA dataset.
 
-```{r}
+```{r, include=FALSE}
 library(tidyverse)
 library(p8105.datasets)
 library(plotly)
 ```
 
-```{r}
+```{r, warning=FALSE}
 data("ny_noaa")
 
 ny_noaa = 
@@ -34,7 +35,7 @@ ny_noaa =
 
 ## scatterplot
 
-```{r}
+```{r, warning=FALSE}
 ny_noaa %>% 
   mutate(text_label = str_c("Year: ", year, "\nSnowfall(mm): ", snow)) %>% 
   plot_ly(x = ~tmin, y = ~tmax, color = ~year, text = ~text_label, 
@@ -44,7 +45,7 @@ ny_noaa %>%
 
 ## Boxplot
 
-```{r}
+```{r, warning=FALSE}
 ny_noaa %>% 
   plot_ly(y = ~prcp, x = ~year, color = ~year,
           type = "box", colors = "viridis")
@@ -52,7 +53,7 @@ ny_noaa %>%
 
 ## Barplot
 
-```{r}
+```{r, warning=FALSE}
 ny_noaa %>% 
   count(year) %>% 
   mutate(year = fct_reorder(year, n)) %>% 
