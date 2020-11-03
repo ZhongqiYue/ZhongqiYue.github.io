@@ -33,7 +33,7 @@ ny_noaa =
 
 # Plotly plots
 
-## scatterplot
+## Scatterplot
 
 ```{r, warning=FALSE}
 ny_noaa %>% 

@@ -31,7 +31,7 @@ ny_noaa =
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Chart A
+### Chart A --- Scatterplot
 
 ```{r}
 ny_noaa %>% 
@@ -44,7 +44,7 @@ ny_noaa %>%
 Column {data-width=350}
 -----------------------------------------------------------------------
 
-### Chart B
+### Chart B --- Boxplot
 
 ```{r}
 ny_noaa %>% 
@@ -52,7 +52,7 @@ ny_noaa %>%
           type = "box", colors = "viridis")
 ```
 
-### Chart C
+### Chart C --- Barplot
 
 ```{r}
 ny_noaa %>% 
