@@ -15,8 +15,10 @@ library(flexdashboard)
 ```
 
 ```{r}
+# Import the dataset.
 data("ny_noaa")
 
+# Tidy the raw data and make the new dataframe.
 ny_noaa = 
   ny_noaa %>% 
   filter(id == "USC00300023") %>% 
@@ -34,11 +36,21 @@ Column {data-width=650}
 ### Chart A --- Scatterplot
 
 ```{r}
+# Set labels for x- and y-axis.
+x <- list(
+  title = "Tmin (°C)")
+y <- list(
+  title = "Tmax (°C)")
+
+# Make a scatterplot of tmax vs tmin.
 ny_noaa %>% 
   mutate(text_label = str_c("Year: ", year, "\nSnowfall(mm): ", snow)) %>% 
   plot_ly(x = ~tmin, y = ~tmax, color = ~year, text = ~text_label, 
           alpha = .5, type = "scatter",colors = "viridis", mode = "markers"
-          )
+          ) %>% 
+  layout(title = "Tmax vs Tmin",
+         xaxis = x,
+         yaxis = y)
 ```
 
 Column {data-width=350}
@@ -47,18 +59,42 @@ Column {data-width=350}
 ### Chart B --- Boxplot
 
 ```{r}
+# Set labels for x- and y-axis.
+x <- list(
+  title = "Year")
+y <- list(
+  title = "Percipitation (tenth of mm)")
+
+# Make a boxplot of prcp vs year.
 ny_noaa %>% 
   plot_ly(y = ~prcp, x = ~year, color = ~year,
-          type = "box", colors = "viridis")
+          type = "box", colors = "viridis") %>% 
+  layout(
+    title = "Percipitation over years",
+    xaxis = x,
+    yaxis = y
+    )
 ```
 
 ### Chart C --- Barplot
 
 ```{r}
+# Set labels for x- and y-axis.
+x <- list(
+  title = "Year")
+y <- list(
+  title = "Observation Counts")
+
+# Make a barplot of observation counts vs year.
 ny_noaa %>% 
   count(year) %>% 
   mutate(year = fct_reorder(year, n)) %>% 
   plot_ly(x = ~year, y = ~n, color = ~year,
-          type = "bar", colors = "viridis")
+          type = "bar", colors = "viridis") %>% 
+   layout(
+    title = "The Number of Observations Over Years ",
+    xaxis = x,
+    yaxis = y
+    )
 ```
 
